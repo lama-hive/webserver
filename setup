@@ -1,0 +1,35 @@
+# Firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow www
+sudo ufw allow 443/tcp
+sudo ufw enable
+
+# Accounts
+adduser tbd
+sudo usermod -aG adm tbd
+sudo usermod -aG sudo tbd
+
+## Lock ubuntu account
+passwd -l ubuntu
+
+## Disable root over ssh
+sudo vim  /etc/ssh/sshd_config
+
+PermitRootLogin yes
+
+## Add ssh key to account
+mkdir .ssh
+touch .ssh/authorized_keys
+
+chmod 700 .ssh
+chmod 664 .ssh/authorized_keys
+
+## Disable passwords over ssh
+sudo vim  /etc/ssh/sshd_config
+PasswordAuthentication no
+UsePAM no
+
+# Hostname
+sudo hostnamectl set-hostname tbd
