@@ -17,7 +17,7 @@ passwd -l ubuntu
 ## Disable root over ssh
 sudo vim  /etc/ssh/sshd_config
 
-PermitRootLogin yes
+PermitRootLogin no
 
 ## Add ssh key to account
 mkdir .ssh
