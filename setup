@@ -53,4 +53,9 @@ docker --version
 sudo systemctl status docker
 sudo usermod -aG docker tbd
 
+# Certbot (Let's Encrypt)
+
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot certonly --standalone -d tbd.com -d www.tbd.com
 
