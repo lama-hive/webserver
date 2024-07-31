@@ -7,13 +7,14 @@ services:
     volumes:
       - ./env/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./env/certs:/etc/nginx/certs
-      - ./:/app
+      - ./pub:/app/pub
   php:
     build:
       context: .
       dockerfile: PHP.Dockerfile
     volumes:
-      - ./:/app
+      - ./src:/app/src
+      - ./pub:/app/pub
   mysql:
     image: mariadb:latest
     environment:
