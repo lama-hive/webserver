@@ -1,0 +1,10 @@
+# Stop containers and renew certificates
+
+#!/bin/bash
+sudo -u website_tld docker compose -f /srv/website_tld/docker-compose.yml stop
+certbot renew
+cp /etc/letsencrypt/live/website.tld/fullchain.pem /srv/website_tld/env/certs/fullchain.pem
+cp /etc/letsencrypt/live/website.tld/privkey.pem /srv/website_tld/env/certs/privkey.pem
+chown website_tld:website_tld /srv/website_tld/env/certs/privkey.pem
+chown website_tld:website_tld /srv/website_tld/env/certs/fullchain.pem
+sudo -u website_tld docker compose -f /srv/website_tld/docker-compose.yml up -d
